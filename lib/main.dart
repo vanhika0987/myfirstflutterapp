@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jaimakalka/home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:jaimakalka/pages/home_page.dart';
+import 'package:jaimakalka/pages/login_page.dart';
+import 'package:jaimakalka/utils/routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,11 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int days = 30;
-    String name = "kalkaji";
-    const pi = 3.14;
     return MaterialApp(
-      home: homepage(),
+      themeMode: ThemeMode.system,
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        fontFamily: GoogleFonts.lato().fontFamily,
+        primaryTextTheme: GoogleFonts.latoTextTheme(),
+      ),
+      debugShowCheckedModeBanner: false,
+
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      routes: {
+        "/": ((context) => const loginpage()),
+        MyRoutes.homeRoute: ((context) => const homepage()),
+        MyRoutes.loginRoute: ((context) => const loginpage())
+      },
     );
   }
 }
